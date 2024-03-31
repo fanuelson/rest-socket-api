@@ -16,6 +16,7 @@ app.get("/health-check", function (req: Request, res: Response) {
 
 app.post("/emit-event", function (req: Request<any, any, EmitEventRequestBody>, res: Response) {
   console.log(`POST /emit-event, body: %j`, req.body);
+  console.log('socket clients connected: %s', io.engine.clientsCount);
   const { eventName, args } = req.body;
   console.log('emitting: %s, args: %j', eventName, args);
   io.emit(eventName, args);
